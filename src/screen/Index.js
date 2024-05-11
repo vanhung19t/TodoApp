@@ -6,6 +6,8 @@ import Home from './Home';
 import Login from './Login'; 
 import Register from './Register';
 
+
+
 const Stack = createStackNavigator();
 
 export default function RootComponent() {

@@ -3,6 +3,7 @@ import { View, TextInput, TouchableOpacity, Text, StyleSheet, FlatList } from 'r
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 
+
 function TodoListApp() {
     const navigation = useNavigation();
     const [todos, setTodos] = useState([]);
@@ -62,8 +63,6 @@ function TodoListApp() {
             <Text>{`${item.title}`}</Text>
         </View>
     );
-
-
     return (
         <View style={styles.container}>
 
