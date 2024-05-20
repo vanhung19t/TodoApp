@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
-import { Appbar, Text, TextInput as PaperTextInput, Button as PaperButton } from 'react-native-paper';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import { Appbar, Text, TextInput , Button  } from 'react-native-paper';
+import { login, useMyContextController } from './Store/Index';
 
-const LoginPage = () => {
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
+const Login = ({navigation}) => {
+  const [email, setEmail] = useState('ngvanhungg1512@gmail.com');
+  const [password, setPassword] = useState('123456');
+  const [showPassword,setShowPassword]=useState(true)
+
+  const [controller,dispatch]=useMyContextController();
+  const {userLogin}=controller;
+
+  useEffect(()=>{
+    console.log(userLogin)
+    
+    if(userLogin!=null){
+      if(userLogin.role=="admin"){
+        navigation.navigate("Admin")
+      }else{
+        navigation.navigate("Customer")
+      }
+    }
+  },[userLogin])
 
   const handleLogin = () => {
-    // Xử lý đăng nhập
-    console.log('Đăng nhập với', phone, password);
+    login(dispatch,email,password)
   };
 
   return (
@@ -18,26 +34,38 @@ const LoginPage = () => {
       <View style={{ padding: 20, marginTop:'50%'}}>
         <Text variant='displayMedium' style={{textAlign:'center',color:'#ef506b', fontWeight:'bold',marginBottom:30}}>Login</Text>
 
-        <PaperTextInput
-          label="Phone"
-          value={phone}
-          onChangeText={setPhone}
+        <TextInput
+          label="Email"
+          value={email}
+          onChangeText={setEmail}
           style={{marginBottom:10}}
         />
 
-        <PaperTextInput
+        <TextInput
           label="Password"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
+          secureTextEntry={showPassword}
+          right={<TextInput.Icon icon={showPassword?"eye-off":"eye"} onPress={()=>setShowPassword(!showPassword)}/>}
         />
-
-        <PaperButton style={{backgroundColor:'#ef506b',marginTop:20,height:40,borderRadius:8}} onPress={handleLogin}>
+        <View style={{flexDirection:'row',marginTop:10}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate("ForgotPassword")}}>
+                <Text style={{color:'#ef506b',fontWeight:'bold',textAlign:'right'}}> Forgot password?</Text>
+            </TouchableOpacity>
+        </View>
+        <Button style={{backgroundColor:'#ef506b',marginTop:20,height:40,borderRadius:8}} onPress={handleLogin}>
             <Text style={{color:'white'}}>Login</Text>
-        </PaperButton>
+        </Button>
+        <View style={{flexDirection:'row',justifyContent:'center',marginTop:10}}>
+            <Text>Don't have an account?</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')} >
+                <Text style={{color:'#ef506b',fontWeight:'bold'}}> Sign up</Text>
+            </TouchableOpacity>
+        </View>
+
       </View>
     </View>
   );
 };
 
-export default LoginPage;
+export default Login;
