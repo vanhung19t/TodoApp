@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { Text, View } from "react-native"
 
 import Lab3 from "./src/lab3/App"

@@ -1,49 +1,44 @@
-import firestore from '@react-native-firebase/firestore';
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
+import { TextInput, Button } from 'react-native-paper';
+import firestore from '@react-native-firebase/firestore';
 
-import { Title, TextInput, Button } from 'react-native-paper';
+const EditTypeShoeScreen = ({ navigation, route }) => {
+  const { item } = route.params;
 
-const EditServiceScreen = ({navigation,route}) => {
-  const {item}=route.params
-  
-  const [serviceName, setServiceName] = useState(`${item.nameService}`);
-  const [price, setPrice] = useState(`${item.price}`);
-  
+  const [nameTypeShoe, setNameTypeShoe] = useState(item.nameTypeShoe);
+
   const handleSubmit = async () => {
     try {
-      const serviceRef = firestore().collection('SERVICES').doc(item.id);
-      await serviceRef.update({
-        nameService: serviceName,
-        price: price
+      const typeShoeRef = firestore().collection('TYPESHOES').doc(item.id);
+      await typeShoeRef.update({
+        nameTypeShoe: nameTypeShoe,
       });
-      navigation.navigate("HomeService")
-      // Thông báo hoặc navigation tùy thuộc vào yêu cầu của bạn
-      console.log('Service updated successfully!');
+      navigation.navigate('Home');
+      console.log('TypeShoe updated successfully!');
     } catch (error) {
-      console.error('Error updating service: ', error);
+      console.error('Error updating TypeShoe: ', error);
     }
   };
 
   return (
-    <View style={{padding:15}}>
-      <View style={{marginBottom:10}}>
-        <Text style={{fontWeight:'bold',color:'black',marginBottom:5}}>Service *</Text>
+    <View style={{ padding: 15 }}>
+      <View style={{ marginBottom: 10 }}>
+        <Text style={{ fontWeight: 'bold', color: 'black', marginBottom: 5 }}>Tên loại giày *</Text>
         <TextInput
-          value={serviceName}
-          onChangeText={setServiceName}
-          placeholder="Input a service name"
-          />
+          value={nameTypeShoe}
+          onChangeText={setNameTypeShoe}
+          placeholder="Nhập tên loại giày"
+        />
       </View>
-      <View style={{marginBottom:10}}>
-        <Text style={{fontWeight:'bold',color:'black',marginBottom:5}}>Price *</Text>
-        <TextInput value={price.toString()} onChangeText={setPrice} keyboardType="numeric" />
-      </View>
-      <Button style={{backgroundColor:'#ef506b',borderRadius:8,marginTop:10}} mode="contained" onPress={handleSubmit}>
-        Update
+      <Button
+        style={{ backgroundColor: '#ef506b', borderRadius: 8, marginTop: 10 }}
+        mode="contained"
+        onPress={handleSubmit}>
+        Cập nhật
       </Button>
     </View>
   );
 };
 
-export default EditServiceScreen;
+export default EditTypeShoeScreen;

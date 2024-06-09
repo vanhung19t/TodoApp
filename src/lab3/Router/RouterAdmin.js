@@ -6,30 +6,34 @@ import Home from "../Admin/Index";
 import Profile from "../Admin/Profile";
 import Customer from "../Admin/Customer";
 import Appointment from "../Admin/Appointment";
+import RouterTypeShoeManagement from "../Admin/RouterTypeShoeManagement";
+import RouterShoeManagement from "../Admin/RouterShoeManagement";
+import Revenue from "../Admin/Revenue";
+import DrawerAdmin from "../Router/RouterDrawerAdmin";
 function TabAdmin() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="RouterShoeManagement"
     //   activeColor="white"
       barStyle={{ backgroundColor: '#ef506b' }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="RouterShoeManagement"
+        component={RouterShoeManagement}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Quản lý Gìay',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <MaterialCommunityIcons name="shoe-formal" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
-        name="Appointment"
-        component={Appointment}
+        name="RouterTypeShoeManagement"
+        component={RouterTypeShoeManagement}
         options={{
-          tabBarLabel: 'Appointment',
+          tabBarLabel: 'Quản lý loại giày',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bank" color={color} size={26} />
+            <MaterialCommunityIcons name="shoe-heel" color={color} size={26} />
           ),
         }}
       />
@@ -44,6 +48,16 @@ function TabAdmin() {
         }}
       />
       <Tab.Screen
+        name="Revenue"
+        component={Revenue}
+        options={{
+          tabBarLabel: 'Revenue',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="chart-bar" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Profile"
         component={Profile}
         options={{
@@ -53,6 +67,7 @@ function TabAdmin() {
           ),
         }}
       />
+
     </Tab.Navigator>
   );
 }

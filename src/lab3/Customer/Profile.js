@@ -18,10 +18,11 @@ export default function Profile({ navigation }) {
   };
 
   return (
-    (currentUser!=null&&
+    (currentUser&&
     <View style={styles.container}>
       <Text style={styles.title}>Thông tin cá nhân</Text>
       <View style={styles.infoContainer}>
+        
         <View style={{flexDirection:'row'}}>
             <Text style={styles.infoLabel}>Full Name: </Text>
             <Text style={styles.infoText}>{currentUser.fullName}</Text>

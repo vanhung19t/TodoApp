@@ -2,19 +2,22 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createMaterialBottomTabNavigator();
-import Home from "../Customer/Index";
+// import Home from "../Customer/Index";
+import Home1 from "../Customer/Home";
 import Profile from "../Customer/Profile";
 import Appointment from "../Customer/Appointment";
+import Cart from "../Customer/RouteCart";
+import Bill from "../Customer/Bills";
 function TabAdmin() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Home1"
     //   activeColor="white"
       barStyle={{ backgroundColor: '#ef506b' }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Home1"
+        component={Home1}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
@@ -22,13 +25,24 @@ function TabAdmin() {
           ),
         }}
       />
+    
       <Tab.Screen
-        name="Appointment"
-        component={Appointment}
+        name="Cart"
+        component={Cart}
         options={{
-          tabBarLabel: 'Appointment',
+          tabBarLabel: 'Cart',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bank" color={color} size={26} />
+            <MaterialCommunityIcons name="cart" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Bill"
+        component={Bill}
+        options={{
+          tabBarLabel: 'Bill',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="cart-check" color={color} size={26} />
           ),
         }}
       />

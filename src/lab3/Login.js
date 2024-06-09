@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import { Appbar, Text, TextInput , Button  } from 'react-native-paper';
 import { login, useMyContextController } from './Store/Index';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('ngvanhungg1512@gmail.com');
-  const [password, setPassword] = useState('123456');
+  const [password, setPassword] = useState('112358fibo');
   const [showPassword,setShowPassword]=useState(true)
 
   const [controller,dispatch]=useMyContextController();
@@ -30,8 +30,11 @@ const Login = ({navigation}) => {
   return (
     <View style={{backgroundColor:'#f2f2f2',flex:1}}>
       {/* <Appbar title="Đăng nhập" /> */}
-
-      <View style={{ padding: 20, marginTop:'50%'}}>
+      
+      <View style={{ padding: 20, marginTop:'30%'}}>
+      <View style={{flexDirection:'row',justifyContent:'center'}}>
+        <Image style={{resizeMode:'contain'}} source={require("../../asset/img/logo1.png")}></Image>
+      </View>
         <Text variant='displayMedium' style={{textAlign:'center',color:'#ef506b', fontWeight:'bold',marginBottom:30}}>Login</Text>
 
         <TextInput

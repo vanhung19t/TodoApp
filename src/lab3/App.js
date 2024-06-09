@@ -9,11 +9,19 @@ import { Provider } from "react-native-paper";
 const App = () => {
   const USERS = firestore().collection("USERS");
 
-  const admin = {
+  // const admin = {
+  //   fullName: "Admin",
+  //   email: "ngvanhungg1512@gmail.com",
+  //   password: "123456",
+  //   phone: "0862861912",
+  //   address: "Bình Dương",
+  //   role: "admin",
+  // };
+   const admin = {
     fullName: "Admin",
-    email: "ngvanhungg1512@gmail.com",
+    email: "thaonguyen@gmail.com",
     password: "123456",
-    phone: "0862861912",
+    phone: "0388642295",
     address: "Bình Dương",
     role: "admin",
   };
